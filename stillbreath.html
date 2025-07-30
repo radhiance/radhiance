@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radhiance - Breathe Your Way to Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06d6a0;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --calm-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            --focus-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --energy-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            --sleep-gradient: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 102, 241, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="white" stop-opacity="0.1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient></defs><circle cx="20" cy="20" r="2" fill="url(%23a)" opacity="0.8"><animate attributeName="opacity" dur="3s" values="0.8;0.2;0.8" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1.5" fill="url(%23a)" opacity="0.6"><animate attributeName="opacity" dur="4s" values="0.6;0.1;0.6" repeatCount="indefinite"/></circle><circle cx="30" cy="70" r="1" fill="url(%23a)" opacity="0.7"><animate attributeName="opacity" dur="2.5s" values="0.7;0.3;0.7" repeatCount="indefinite"/></circle><circle cx="70" cy="80" r="2.5" fill="url(%23a)" opacity="0.5"><animate attributeName="opacity" dur="3.5s" values="0.5;0.1;0.5" repeatCount="indefinite"/></circle></svg>') repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            color: white;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .calm { background: var(--calm-gradient); }
+        .focus { background: var(--focus-gradient); }
+        .energy { background: var(--energy-gradient); }
+        .sleep { background: var(--sleep-gradient); }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            z-index: 1;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .step p {
+            color: var(--text-light);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .app-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .app-badge {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .app-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .app-badge img {
+            height: 50px;
+            border-radius: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .breathing-circle {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: breathe 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes breathe {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="breathing-circle"></div>
+    
+    <header>
+        <nav class="container">
+            <div class="logo">Radhiance</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+            <a href="#download" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Breathe Your Way to Wellness</h1>
+                <p>Transform your daily routine with ancient breathing techniques backed by modern science. Find calm, focus, energy, and better sleep in just minutes a day.</p>
+                <div class="hero-buttons">
+                    <a href="#download" class="cta-button">Start Your Journey</a>
+                    <a href="#how-it-works" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Four Pathways to Better Living</h2>
+                <p>Each mode is scientifically designed to help you achieve specific wellness goals through the power of intentional breathing.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon calm">😌</div>
+                    <h3>Calm</h3>
+                    <p>Reduce stress and anxiety with gentle breathing techniques that activate your parasympathetic nervous system for instant relaxation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon focus">🧠</div>
+                    <h3>Focus</h3>
+                    <p>Sharpen your mental clarity and concentration with energizing breath patterns that enhance cognitive performance and attention.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon energy">🌞</div>
+                    <h3>Energy</h3>
+                    <p>Boost your natural vitality and mood with invigorating breathing exercises that increase oxygen flow and awaken your senses.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon sleep">🌙</div>
+                    <h3>Sleep</h3>
+                    <p>Prepare your mind and body for restful sleep with calming breathwork that helps you unwind and drift off naturally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Journey to Wellness</h2>
+                <p>Getting started is simple. Follow these three steps to begin transforming your daily routine.</p>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Goal</h3>
+                    <p>Select from Calm, Focus, Energy, or Sleep based on what you need in the moment.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Follow the Guide</h3>
+                    <p>Let our visual and audio guidance lead you through proven breathing techniques in just 3-10 minutes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Feel the Difference</h3>
+                    <p>Experience immediate benefits and build lasting wellness habits with our streak tracking and personalized insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Users Say</h2>
+                <p>Join thousands who have transformed their daily wellness routine with Radhiance.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"After just two weeks with Radhiance, I'm sleeping better and feeling more focused at work. The breathing exercises are so simple yet powerful."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>Sarah Chen</h4>
+                            <p>Marketing Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"I love how quick and effective these sessions are. The Energy mode has become my go-to morning routine - it's better than coffee!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Michael Rodriguez</h4>
+                            <p>Software Developer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"The Calm mode has been a game-changer for managing my anxiety. I finally have a tool that works whenever I need it most."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <h4>Aisha Patel</h4>
+                            <p>Graduate Student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="cta-section">
+        <div class="container">
+            <h2>Start Your Wellness Journey Today</h2>
+            <p>Download Radhiance and discover how just a few minutes of mindful breathing can transform your entire day. Start with our free tier and upgrade when you're ready for more.</p>
+            <a href="#" class="cta-button" style="background: white; color: var(--primary-color); font-size: 1.1rem; padding: 1rem 2rem;">Download Free App</a>
+            <div class="app-badges">
+                <a href="#" class="app-badge">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM1IiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMTM1IDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTM1IiBoZWlnaHQ9IjQwIiByeD0iNSIgZmlsbD0iYmxhY2siLz4KPHN2ZyB4PSIxNCIgeT0iOCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiPgo8cGF0aCBkPSJNMyA3VjE3QzMgMTguMSAzLjkgMTkgNSAxOUgxOUMxOC45IDE5IDE5IDE4LjEgMTkgMTdWN0gzWiIgZmlsbD0iIzRDQUY1MCIvPgo8cGF0aCBkPSJNMTkgN1Y5SDE3VjdIOVY5SDdWN0gzVjlIMVY3QzEgNS45IDEuOSA1IDMgNUgxOUMxOS4xIDUgMTkgNS45IDE5IDdaIiBmaWxsPSIjNENBRjUwIi8+CjxwYXRoIGQ9Ik05IDEzSDE1VjE1SDlWMTNaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPHR0ZXh0IHg9IjQ0IiB5PSIxNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjgiIGZpbGw9IndoaXRlIj5HZXQgaXQgb248L3RleHQ+Cjx0ZXh0IHg9IjQ0IiB5PSIyOCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiPkdvb2dsZSBQbGF5PC90ZXh0Pgo8L3N2Zz4=" alt="Get it on Google Play">
+                </a>
+                <a href="#" class="app-badge">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM1IiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMTM1IDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTM1IiBoZWlnaHQ9IjQwIiByeD0iNSIgZmlsbD0iYmxhY2siLz4KPHN2ZyB4PSIxNCIgeT0iOCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiPgo8cGF0aCBkPSJNMTguMzEgMTAuMzFMMTMuNDEgNS40MUMxMy4wNCA1LjA0IDEyLjUyIDQuODkgMTIgNC44OUM5Ljc5IDQuODkgOCA2LjY4IDggOC44OUM4IDExLjEgOS43OSAxMi44OSAxMiAxMi44OUMxMi41MiAxMi44OSAxMy4wNCAxMi43NCAxMy40MSAxMi4zN0wxOC4zMSA3LjQ3QzE4Ljg1IDYuOTMgMTguODUgNi4wNyAxOC4zMSA1LjUzWiIgZmlsbD0iIzAwN0FGRiIvPgo8L3N2Zz4KPHR0ZXh0IHg9IjQ0IiB5PSIxNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjgiIGZpbGw9IndoaXRlIj5Eb3dubG9hZCBvbiB0aGU8L3RleHQ+Cjx0ZXh0IHg9IjQ0IiB5PSIyOCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiPkFwcCBTdG9yZTwvdGV4dD4KPC9zdmc+" alt="Download on the App Store">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Radhiance</h3>
+                    <p>Breathe your way to wellness with scientifically-backed breathing techniques rooted in ancient wisdom.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Features</h3>
+                    <a href="#features">Calm Mode</a>
+                    <a href="#features">Focus Mode</a>
+                    <a href="#features">Energy Mode</a>
+                    <a href="#features">Sleep Mode</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="#">Instagram</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">YouTube</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Radhiance. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and steps
+        document.querySelectorAll('.feature-card, .step, .testimonial').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
